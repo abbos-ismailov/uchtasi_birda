@@ -1,6 +1,7 @@
 from aiogram import types
 from aiogram.dispatcher.filters.builtin import CommandStart
 from insta import instadownloader_func
+from youtube import youtubeDownloader
 from aiogram.dispatcher.filters import Text
 from loader import dp
 
@@ -28,3 +29,12 @@ async def salom(msg: types.Message):
         
         else:
             await msg.answer("Bu URL manzilini aniqlay olmadik")
+        
+
+@dp.message_handler(Text(startswith='http://www.youtube.com'))
+async def youtube(msg: types.Message):
+    link = msg.text
+    data = youtubeDownloader(link=link)
+    
+    if data:
+        await msg.answer(link)
