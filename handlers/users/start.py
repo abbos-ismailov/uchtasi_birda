@@ -14,6 +14,7 @@ async def bot_start(message: types.Message):
 async def salom(msg: types.Message):
     link = msg.text
     data = instadownloader_func(link)
+    print(data) 
     if data == "Bad":
         await msg.answer("Bu URL manzilini aniqlay olmadik")
     else:
